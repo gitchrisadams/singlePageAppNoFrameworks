@@ -1,0 +1,10 @@
+{
+  "name": "singlepageapptesting",
+  "devDependencies": {
+    "grunt": "0.4.x",
+    "babelify": "^6.1.2",
+    "grunt-browserify": "^3.8.0",
+    "grunt-eslint": "^16.0.0",
+    "grunt-contrib-watch": "0.6.x"
+  }
+}
