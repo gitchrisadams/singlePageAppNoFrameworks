@@ -1,6 +1,6 @@
 module.exports = function (grunt) {
   grunt.initConfig({
-    // Browserify lets use use require modules. 
+    // Browserify lets use use require modules and transpiles to es6.
     browserify: {
        dist: {
           options: {
@@ -10,8 +10,10 @@ module.exports = function (grunt) {
                 }]
              ]
           },
+          // Dest : source:
           files: {
-             "./dist/es5/index.js": ["./src/scripts/index.js", "./src/scripts/modeul1.js",]
+             "./dist/es5/index.js": ["./src/scripts/index.js", "./src/scripts/module1.js"],
+             "./dist/es5/display_phones.js": ["./src/scripts/display_phones.js"]
           }
        }
     },
@@ -19,8 +21,10 @@ module.exports = function (grunt) {
     // Minify the js code so it is all one line for performance.
     uglify: {
       dist: {
+        // Dest : source:
         files: {
-          './dist/compiled/index.js' : ["./dist/es5/index.js"]
+          './dist/compiled/index.js' : ["./dist/es5/index.js"],
+          './dist/compiled/display_phones.js' : ["./dist/es5/display_phones.js"]
         }
       }
     },
@@ -56,6 +60,6 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-  grunt.registerTask("default", ["watch"]);
+  grunt.registerTask("default", ["browserify", "uglify", "cssmin", "watch"]);
   grunt.registerTask("build", ["browserify", "uglify"]);
 };

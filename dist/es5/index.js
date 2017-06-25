@@ -18,4 +18,4 @@ module.exports = function () {
 	console.log("From module1, Browserified!!!");
 };
 
-},{}]},{},[1]);
+},{}]},{},[1,2]);
