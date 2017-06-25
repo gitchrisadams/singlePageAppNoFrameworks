@@ -1,5 +1,6 @@
 module.exports = function (grunt) {
   grunt.initConfig({
+    // Browserify lets use use require modules. 
     browserify: {
        dist: {
           options: {
@@ -10,24 +11,32 @@ module.exports = function (grunt) {
              ]
           },
           files: {
-             // if the source file has an extension of es6 then
-             // we change the name of the source file accordingly.
-             // The result file's extension is always .js
-             "./dist/index.js": ["./src/scripts/index.js"]
+             "./dist/es5/index.js": ["./src/scripts/index.js", "./src/scripts/modeul1.js",]
           }
        }
     },
+
+    // Minify the js code so it is all one line for performance.
+    uglify: {
+      dist: {
+        files: {
+          './dist/compiled/index.js' : ["./dist/es5/index.js"]
+        }
+      }
+    },
+    // When things change, run tasks.
     watch: {
        scripts: {
           files: ["./src/scripts/*.js"],
-          tasks: ["browserify"]
+          tasks: ["browserify", "uglify"]
        }
     }
   });
 
   grunt.loadNpmTasks("grunt-browserify");
+  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks("grunt-contrib-watch");
 
   grunt.registerTask("default", ["watch"]);
-  grunt.registerTask("build", ["browserify"]);
+  grunt.registerTask("build", ["browserify", "uglify"]);
 };
