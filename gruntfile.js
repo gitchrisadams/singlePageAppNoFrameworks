@@ -24,11 +24,29 @@ module.exports = function (grunt) {
         }
       }
     },
+
+    // Minify CSS code.
+    cssmin: {
+      target: {
+        files: [{
+          expand: true,
+          cwd: 'src/css',
+          src: ['*.css', '!*.min.css'],
+          dest: 'dist/css',
+          ext: '.min.css'
+        }]
+      }
+    },
+
     // When things change, run tasks.
     watch: {
        scripts: {
           files: ["./src/scripts/*.js"],
           tasks: ["browserify", "uglify"]
+       },
+       css: {
+        files: ["./src/css/*.css"],
+        tasks: ["cssmin"]
        }
     }
   });
@@ -36,6 +54,7 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks("grunt-browserify");
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks("grunt-contrib-watch");
+  grunt.loadNpmTasks('grunt-contrib-cssmin');
 
   grunt.registerTask("default", ["watch"]);
   grunt.registerTask("build", ["browserify", "uglify"]);
