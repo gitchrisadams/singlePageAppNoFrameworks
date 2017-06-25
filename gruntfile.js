@@ -18,6 +18,10 @@ module.exports = function (grunt) {
        }
     },
 
+    eslint: {
+      target: ['src/scripts/*.js']
+    },
+
     // Minify the js code so it is all one line for performance.
     uglify: {
       dist: {
@@ -59,7 +63,8 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks("grunt-contrib-watch");
   grunt.loadNpmTasks('grunt-contrib-cssmin');
+  grunt.loadNpmTasks('grunt-eslint');
 
-  grunt.registerTask("default", ["browserify", "uglify", "cssmin", "watch"]);
-  grunt.registerTask("build", ["browserify", "uglify"]);
+  grunt.registerTask("default", ["eslint", "browserify", "uglify", "cssmin", "watch"]);
+  grunt.registerTask("build", ["eslint", "browserify", "uglify"]);
 };

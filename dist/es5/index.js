@@ -6,6 +6,8 @@ var module1 = require('./module1.js');
 
 var myLet1 = "test";
 
+console.log(myLet1);
+
 // Use imported module
 module1();
 
@@ -15,7 +17,7 @@ module1();
 // Export module:
 module.exports = function () {
 
-	console.log("From module1, Browserified!!!");
+  console.log("From module1, Browserified!!!");
 };
 
 },{}]},{},[1,2]);
