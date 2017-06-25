@@ -12,8 +12,7 @@ module.exports = function (grunt) {
           },
           // Dest : source:
           files: {
-             "./dist/es5/index.js": ["./src/scripts/index.js", "./src/scripts/module1.js"],
-             "./dist/es5/display_phones.js": ["./src/scripts/display_phones.js"]
+             "./dist/es5/index.js": ["./src/scripts/*.js"],
           }
        }
     },
@@ -27,8 +26,7 @@ module.exports = function (grunt) {
       dist: {
         // Dest : source:
         files: {
-          './dist/compiled/index.js' : ["./dist/es5/index.js"],
-          './dist/compiled/display_phones.js' : ["./dist/es5/display_phones.js"]
+          './dist/compiled/index.js' : ["./dist/es5/*.js"]
         }
       }
     },
