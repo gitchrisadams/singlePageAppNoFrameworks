@@ -339,6 +339,10 @@ $(function () {
 "use strict";
 
 // Import user defined module:
+// es6 import
+
+var _module2 = require('./module2');
+
 var module1 = require('./module1.js');
 
 var myLet1 = "test";
@@ -347,8 +351,9 @@ console.log(myLet1);
 
 // Use imported module
 module1();
+_module2.function1();
 
-},{"./module1.js":3}],3:[function(require,module,exports){
+},{"./module1.js":3,"./module2":4}],3:[function(require,module,exports){
 "use strict";
 
 // Export module:
@@ -357,4 +362,22 @@ module.exports = function () {
   console.log("From module1, Browserified!!!");
 };
 
-},{}]},{},[1,2,3]);
+},{}],4:[function(require,module,exports){
+"use strict";
+function function1() {
+  console.log("hello there function1");
+}
+
+function function2() {
+  console.log("hello there function2");
+}
+
+// Export module:
+module.exports = {
+
+  function1: function1,
+  function2: function2
+
+};
+
+},{}]},{},[1,2,3,4]);
